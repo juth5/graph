@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Chart.js CDNを追加 -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="./index2.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/phi-jp/meltline@v0.1.15/meltline.css">
+  <title>Document</title>
+</head>
+<style>
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+#layout {
+  display: flex;
+  height: calc(100vh - 40px); /* headerの高さを引く */
+}
+
+#chart-container {
+  flex-grow: 1;
+  position: relative;
+}
+
+canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+#sidebar {
+  width: 300px;
+  transition: margin-right 0.3s ease;
+}
+
+#sidebar.mnr250 {
+  margin-right: -250px;
+}
+
+.light-gray {
+  background-color: #f0f0f0;
+}
+</style>
+
+<body>
+<header class="h40 border f fbw fm px20">
+  <div>TOPへ</div>
+  <div>
+    <button class="button" id="sidebar-icon">サイドバーの開閉</button>
+  </div>
+</header>
+
+<div class="f fm h-full relative overflow-hidden" id="layout">
+  
+  <div class="h-full word-break-all pb100" id="chart-container">
+    <canvas id="tripleAxisChart"></canvas>
+  </div>
+  
+  <div class="w315 f flex-column h-full flex-fixed px8 pt4 relative border" id="sidebar">
+    <div class="mb12">
+      <div class="mt4 bold">期間</div>
+      <div class="f fm">
+        <div class="f fm mr6">
+          <select name="" id="" class="border border-black p6 rounded-4 mr4">
+            <option value="2025">2025</option>
+            <option value="2024">2024</option>
+          </select>
+          <div>年</div>
+        </div>
+        <div class="f fm mr6">
+          <select name="" id="" class="border border-black p6 rounded-4 mr4">
+            <option value="12">12</option>
+            <option value="11">11</option>
+          </select>
+          <div>月</div>
+        </div>
+        <div>~</div>
+        <div class="f fm mr6">
+          <select name="" id="" class="border border-black p6 rounded-4 mr4">
+            <option value="2025">2025</option>
+            <option value="2024">2024</option>
+          </select>
+          <div>年</div>
+        </div>
+        <div class="f fm mr6">
+          <select name="" id="" class="border border-black p6 rounded-4 mr4">
+            <option value="12">12</option>
+            <option value="11">11</option>
+          </select>
+          <div>月</div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="bold">パターン選択</div>
+      <select name="" id="" class="w256 border border-black p6 rounded-4 mb6">
+        <option value="2025">パターンA</option>
+        <option value="2024">パターンB</option>
+      </select>
+      <button class="button bg-blue text-white">パターン登録</button>
+    </div>
+
+    <ul class="overflow-y-scroll bg-white p4 rounded-4">
+      <li class="mb12 light-gray p4 rounded-4">
+        <div class="bold">項目1</div>
+        <select name="" id="" class="w256 border border-black p6 rounded-4 mb6">
+          <option value="2025">ガイドベーン開度</option>
+          <option value="2024">水位</option>
+        </select>
+        <div class="f fb mb6">
+          <div>
+            <div class="fs12 bold">Y軸最低値</div>
+            <input type="number" class="input p2 h30 w80 fs12 mr8">
+          </div>
+          <div class="mr12">
+            <div class="fs12 bold">Y軸最高値</div>
+            <input type="number" class="input p2 h30 w80 fs12">
+          </div>
+          <div>
+            <button class="bg-green text-white button">変更</button>
+          </div>
+        </div>
+        
+      </li>
+      <li class="mb12 light-gray p4 rounded-4">
+        <div class="bold">項目2</div>
+        <select name="" id="" class="w256 border border-black p6 rounded-4 mb6">
+          <option value="2025">ガイドベーン開度</option>
+          <option value="2024">水位</option>
+        </select>
+        <div class="f fb mb6">
+          <div>
+            <div class="fs12 bold">Y軸最低値</div>
+            <input type="number" class="input p2 h30 w80 fs12 mr8">
+          </div>
+          <div class="mr12">
+            <div class="fs12 bold">Y軸最高値</div>
+            <input type="number" class="input p2 h30 w80 fs12">
+          </div>
+          <div>
+            <button class="bg-green text-white button">変更</button>
+          </div>
+        </div>
+        
+      </li>
+      <li class="mb12 light-gray p4 rounded-4">
+        <div class="bold">項目3</div>
+        <select name="" id="" class="w256 border border-black p6 rounded-4 mb6">
+          <option value="2025">ガイドベーン開度</option>
+          <option value="2024">水位</option>
+        </select>
+        <div class="f fb mb6">
+          <div>
+            <div class="fs12 bold">Y軸最低値</div>
+            <input type="number" class="input p2 h30 w80 fs12 mr8">
+          </div>
+          <div class="mr12">
+            <div class="fs12 bold">Y軸最高値</div>
+            <input type="number" class="input p2 h30 w80 fs12">
+          </div>
+          <div>
+            <button class="bg-green text-white button">変更</button>
+          </div>
+        </div>
+        
+      </li>
+      <li class="mb12 light-gray p4 rounded-4">
+        <div class="bold">項目4</div>
+        <select name="" id="" class="w256 border border-black p6 rounded-4 mb6">
+          <option value="2025">ガイドベーン開度</option>
+          <option value="2024">水位</option>
+        </select>
+        <div class="f fb mb6">
+          <div>
+            <div class="fs12 bold">Y軸最低値</div>
+            <input type="number" class="input p2 h30 w80 fs12 mr8">
+          </div>
+          <div class="mr12">
+            <div class="fs12 bold">Y軸最高値</div>
+            <input type="number" class="input p2 h30 w80 fs12">
+          </div>
+          <div>
+            <button class="bg-green text-white button">変更</button>
+          </div>
+        </div>
+        
+      </li>
+      <li class="mb12 light-gray p4 rounded-4">
+        <div class="bold">項目5</div>
+        <select name="" id="" class="w256 border border-black p6 rounded-4 mb6">
+          <option value="2025">ガイドベーン開度</option>
+          <option value="2024">水位</option>
+        </select>
+        <div class="f fb mb6">
+          <div>
+            <div class="fs12 bold">Y軸最低値</div>
+            <input type="number" class="input p2 h30 w80 fs12 mr8">
+          </div>
+          <div class="mr12">
+            <div class="fs12 bold">Y軸最高値</div>
+            <input type="number" class="input p2 h30 w80 fs12">
+          </div>
+          <div>
+            <button class="bg-green text-white button">変更</button>
+          </div>
+        </div>
+        
+      </li>
+      <li class="mb12 light-gray p4 rounded-4">
+        <div class="bold">項目6</div>
+        <select name="" id="" class="w256 border border-black p6 rounded-4 mb6">
+          <option value="2025">ガイドベーン開度</option>
+          <option value="2024">水位</option>
+        </select>
+        <div class="f fb mb6">
+          <div>
+            <div class="fs12 bold">Y軸最低値</div>
+            <input type="number" class="input p2 h30 w80 fs12 mr8">
+          </div>
+          <div class="mr12">
+            <div class="fs12 bold">Y軸最高値</div>
+            <input type="number" class="input p2 h30 w80 fs12">
+          </div>
+          <div>
+            <button class="bg-green text-white button">変更</button>
+          </div>
+        </div>
+        
+      </li>
+      <li class="mb12 light-gray p4 rounded-4">
+        <div class="bold">項目7</div>
+        <select name="" id="" class="w256 border border-black p6 rounded-4 mb6">
+          <option value="2025">ガイドベーン開度</option>
+          <option value="2024">水位</option>
+        </select>
+        <div class="f fb mb6">
+          <div>
+            <div class="fs12 bold">Y軸最低値</div>
+            <input type="number" class="input p2 h30 w80 fs12 mr8">
+          </div>
+          <div class="mr12">
+            <div class="fs12 bold">Y軸最高値</div>
+            <input type="number" class="input p2 h30 w80 fs12">
+          </div>
+          <div>
+            <button class="bg-green text-white button">変更</button>
+          </div>
+        </div>
+        
+      </li>
+      <li class="mb12 light-gray p4 rounded-4">
+        <div class="bold">項目8</div>
+        <select name="" id="" class="w256 border border-black p6 rounded-4 mb6">
+          <option value="2025">ガイドベーン開度</option>
+          <option value="2024">水位</option>
+        </select>
+        <div class="f fb mb6">
+          <div>
+            <div class="fs12 bold">Y軸最低値</div>
+            <input type="number" class="input p2 h30 w80 fs12 mr8">
+          </div>
+          <div class="mr12">
+            <div class="fs12 bold">Y軸最高値</div>
+            <input type="number" class="input p2 h30 w80 fs12">
+          </div>
+          <div>
+            <button class="bg-green text-white button">変更</button>
+          </div>
+        </div>
+        
+      </li>
+      <li class="mb12 light-gray p4 rounded-4">
+        <div class="bold">項目9</div>
+        <select name="" id="" class="w256 border border-black p6 rounded-4 mb6">
+          <option value="2025">ガイドベーン開度</option>
+          <option value="2024">水位</option>
+        </select>
+        <div class="f fb mb6">
+          <div>
+            <div class="fs12 bold">Y軸最低値</div>
+            <input type="number" class="input p2 h30 w80 fs12 mr8">
+          </div>
+          <div class="mr12">
+            <div class="fs12 bold">Y軸最高値</div>
+            <input type="number" class="input p2 h30 w80 fs12">
+          </div>
+          <div>
+            <button class="bg-green text-white button">変更</button>
+          </div>
+        </div>
+        
+      </li>
+      <li class="mb12 light-gray p4 rounded-4">
+        <div class="bold">項目10</div>
+        <select name="" id="" class="w256 border border-black p6 rounded-4 mb6">
+          <option value="2025">ガイドベーン開度</option>
+          <option value="2024">水位</option>
+        </select>
+        <div class="f fb mb6">
+          <div>
+            <div class="fs12 bold">Y軸最低値</div>
+            <input type="number" class="input p2 h30 w80 fs12 mr8">
+          </div>
+          <div class="mr12">
+            <div class="fs12 bold">Y軸最高値</div>
+            <input type="number" class="input p2 h30 w80 fs12">
+          </div>
+          <div>
+            <button class="bg-green text-white button">変更</button>
+          </div>
+        </div>
+        
+      </li>
+
+    </ul>
+    <div class="flex-fixed mb6">
+      <button class="button w128 mr16 bg-blue text-white">取得して描画</button>
+      <button class="button w128 bg-red text-white">クリア</button>
+    </div>
+  </div>
+
+
+  <div class="absolute b40 r0 l20 f fl">
+    <div>日付の入力変更ゾーン</div>
+  </div>
+
+
+</div>
+
+  <script>
+
+
+  </script>
+</body>
+</html>
