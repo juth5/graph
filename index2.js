@@ -53,7 +53,7 @@ let powerPlantButtonElement = document.getElementById('powerPlantButton');
     }
   });
   sidebarIcon.addEventListener('click', () => {
-    sidebar.classList.toggle("mnr250");
+    sidebar.classList.toggle("mnr300");
 
     // アニメーションの後にresize
     setTimeout(() => {

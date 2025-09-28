@@ -32,11 +32,11 @@ canvas {
 }
 
 #sidebar {
-  width: 300px;
+  width:300px;
   transition: margin-right 0.3s ease;
 }
 
-#sidebar.mnr250 {
+#sidebar.mnr300 {
   margin-right: -250px;
 }
 
@@ -82,6 +82,7 @@ canvas {
       font-size: 1.2em;
       cursor: pointer;
     }
+
 </style>
 
 <body>
@@ -103,12 +104,11 @@ canvas {
   <div class="h-full word-break-all pb100" id="chart-container">
     <canvas id="tripleAxisChart"></canvas>
   </div>
-  
-  <div class="w315 f flex-column h-full flex-fixed px8 pt4 relative border" id="sidebar">
+  <button class="fixed t40 r0 z100 button mr4 bg-orange text-white p8 mt4" id="sidebar-icon">➡</button>
+
+  <div class="f flex-column h-full flex-fixed px8 pt4 relative border" id="sidebar">
     <div class="mb8">
       <div class="f mb4">
-
-        <button class="button mr4 bg-orange text-white" id="sidebar-icon">➡</button>
         <div class="mt4 bold">期間</div>
       </div>
 
@@ -159,6 +159,7 @@ canvas {
       <li class="mb8 light-gray p6 rounded-4">
         <div class="bold">項目1</div>
         <select name="" id="" class="w256 border border-black p6 rounded-4 mb6">
+          <option value="">未選択</option>
           <option value="2025">ガイドベーン開度</option>
           <option value="2024">水位</option>
         </select>
@@ -172,7 +173,12 @@ canvas {
             <input type="number" class="input p2 h30 w80 fs12">
           </div>
           <div>
-            <button class="bg-green text-white button">変更</button>
+            <button class="bg-green text-white button w50 p2 py6 mr4">変更</button>
+          </div>
+          <div>
+            <button class="bg-white f fh border circle s30" title="初期値にリセット">
+              <img src="./更新ボタン.svg" class='s20' alt="">
+            </button>
           </div>
         </div>
         
@@ -180,6 +186,7 @@ canvas {
       <li class="mb8 light-gray p6 rounded-4">
         <div class="bold">項目2</div>
         <select name="" id="" class="w256 border border-black p6 rounded-4 mb6">
+          <option value="">未選択</option>
           <option value="2025">ガイドベーン開度</option>
           <option value="2024">水位</option>
         </select>
@@ -193,14 +200,21 @@ canvas {
             <input type="number" class="input p2 h30 w80 fs12">
           </div>
           <div>
-            <button class="bg-green text-white button">変更</button>
+            <button class="bg-green text-white button w50 p2 py6 mr4">変更</button>
           </div>
+          <div>
+            <button class="bg-white f fh border circle s30" title="初期値にリセット">
+              <img src="./更新ボタン.svg" class='s20' alt="">
+            </button>
+          </div>
+          
         </div>
         
       </li>
       <li class="mb8 light-gray p6 rounded-4">
         <div class="bold">項目3</div>
         <select name="" id="" class="w256 border border-black p6 rounded-4 mb6">
+          <option value="">未選択</option>
           <option value="2025">ガイドベーン開度</option>
           <option value="2024">水位</option>
         </select>
@@ -214,7 +228,12 @@ canvas {
             <input type="number" class="input p2 h30 w80 fs12">
           </div>
           <div>
-            <button class="bg-green text-white button">変更</button>
+            <button class="bg-green text-white button w50 p2 py6 mr4">変更</button>
+          </div>
+          <div>
+            <button class="bg-white f fh border circle s30" title="初期値にリセット">
+              <img src="./更新ボタン.svg" class='s20' alt="">
+            </button>
           </div>
         </div>
         
@@ -222,6 +241,7 @@ canvas {
       <li class="mb8 light-gray p6 rounded-4">
         <div class="bold">項目4</div>
         <select name="" id="" class="w256 border border-black p6 rounded-4 mb6">
+          <option value="">未選択</option>
           <option value="2025">ガイドベーン開度</option>
           <option value="2024">水位</option>
         </select>
@@ -235,7 +255,12 @@ canvas {
             <input type="number" class="input p2 h30 w80 fs12">
           </div>
           <div>
-            <button class="bg-green text-white button">変更</button>
+            <button class="bg-green text-white button w50 p2 py6 mr4">変更</button>
+          </div>
+          <div>
+            <button class="bg-white f fh border circle s30" title="初期値にリセット">
+              <img src="./更新ボタン.svg" class='s20' alt="">
+            </button>
           </div>
         </div>
         
@@ -243,6 +268,7 @@ canvas {
       <li class="mb8 light-gray p6 rounded-4">
         <div class="bold">項目5</div>
         <select name="" id="" class="w256 border border-black p6 rounded-4 mb6">
+          <option value="">未選択</option>
           <option value="2025">ガイドベーン開度</option>
           <option value="2024">水位</option>
         </select>
@@ -256,7 +282,12 @@ canvas {
             <input type="number" class="input p2 h30 w80 fs12">
           </div>
           <div>
-            <button class="bg-green text-white button">変更</button>
+            <button class="bg-green text-white button w50 p2 py6 mr4">変更</button>
+          </div>
+          <div>
+            <button class="bg-white f fh border circle s30" title="初期値にリセット">
+              <img src="./更新ボタン.svg" class='s20' alt="">
+            </button>
           </div>
         </div>
         
@@ -264,6 +295,7 @@ canvas {
       <li class="mb8 light-gray p6 rounded-4">
         <div class="bold">項目6</div>
         <select name="" id="" class="w256 border border-black p6 rounded-4 mb6">
+          <option value="">未選択</option>
           <option value="2025">ガイドベーン開度</option>
           <option value="2024">水位</option>
         </select>
@@ -277,7 +309,12 @@ canvas {
             <input type="number" class="input p2 h30 w80 fs12">
           </div>
           <div>
-            <button class="bg-green text-white button">変更</button>
+            <button class="bg-green text-white button w50 p2 py6 mr4">変更</button>
+          </div>
+          <div>
+            <button class="bg-white f fh border circle s30" title="初期値にリセット">
+              <img src="./更新ボタン.svg" class='s20' alt="">
+            </button>
           </div>
         </div>
         
@@ -285,6 +322,7 @@ canvas {
       <li class="mb8 light-gray p6 rounded-4">
         <div class="bold">項目7</div>
         <select name="" id="" class="w256 border border-black p6 rounded-4 mb6">
+          <option value="">未選択</option>
           <option value="2025">ガイドベーン開度</option>
           <option value="2024">水位</option>
         </select>
@@ -298,7 +336,12 @@ canvas {
             <input type="number" class="input p2 h30 w80 fs12">
           </div>
           <div>
-            <button class="bg-green text-white button">変更</button>
+            <button class="bg-green text-white button w50 p2 py6 mr4">変更</button>
+          </div>
+          <div>
+            <button class="bg-white f fh border circle s30" title="初期値にリセット">
+              <img src="./更新ボタン.svg" class='s20' alt="">
+            </button>
           </div>
         </div>
         
@@ -306,6 +349,7 @@ canvas {
       <li class="mb8 light-gray p6 rounded-4">
         <div class="bold">項目8</div>
         <select name="" id="" class="w256 border border-black p6 rounded-4 mb6">
+          <option value="">未選択</option>
           <option value="2025">ガイドベーン開度</option>
           <option value="2024">水位</option>
         </select>
@@ -319,7 +363,12 @@ canvas {
             <input type="number" class="input p2 h30 w80 fs12">
           </div>
           <div>
-            <button class="bg-green text-white button">変更</button>
+            <button class="bg-green text-white button w50 p2 py6 mr4">変更</button>
+          </div>
+          <div>
+            <button class="bg-white f fh border circle s30" title="初期値にリセット">
+              <img src="./更新ボタン.svg" class='s20' alt="">
+            </button>
           </div>
         </div>
         
@@ -327,6 +376,7 @@ canvas {
       <li class="mb8 light-gray p6 rounded-4">
         <div class="bold">項目9</div>
         <select name="" id="" class="w256 border border-black p6 rounded-4 mb6">
+          <option value="">未選択</option>
           <option value="2025">ガイドベーン開度</option>
           <option value="2024">水位</option>
         </select>
@@ -340,7 +390,12 @@ canvas {
             <input type="number" class="input p2 h30 w80 fs12">
           </div>
           <div>
-            <button class="bg-green text-white button">変更</button>
+            <button class="bg-green text-white button w50 p2 py6 mr4">変更</button>
+          </div>
+          <div>
+            <button class="bg-white f fh border circle s30" title="初期値にリセット">
+              <img src="./更新ボタン.svg" class='s20' alt="">
+            </button>
           </div>
         </div>
         
@@ -348,6 +403,7 @@ canvas {
       <li class="mb8 light-gray p6 rounded-4">
         <div class="bold">項目10</div>
         <select name="" id="" class="w256 border border-black p6 rounded-4 mb6">
+          <option value="">未選択</option>
           <option value="2025">ガイドベーン開度</option>
           <option value="2024">水位</option>
         </select>
@@ -361,7 +417,12 @@ canvas {
             <input type="number" class="input p2 h30 w80 fs12">
           </div>
           <div>
-            <button class="bg-green text-white button">変更</button>
+            <button class="bg-green text-white button w50 p2 py6 mr4">変更</button>
+          </div>
+          <div>
+            <button class="bg-white f fh border circle s30" title="初期値にリセット">
+              <img src="./更新ボタン.svg" class='s20' alt="">
+            </button>
           </div>
         </div>
         
@@ -402,7 +463,12 @@ canvas {
         <input type="number" class="input w60">
         <div class="px6">日</div>
       </div>
-      <button class="button bg-green text-white">変更</button>
+      <button class="button bg-green text-white mr8">変更</button>
+      <div>
+        <button class="bg-white f fh border circle s30" title="初期値にリセット">
+          <img src="./更新ボタン.svg" class='s20' alt="">
+        </button>
+      </div>
       
 
 
