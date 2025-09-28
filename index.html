@@ -7,6 +7,7 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="./index2.js"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/phi-jp/meltline@v0.1.15/meltline.css">
+
   <title>Document</title>
 </head>
 <style>
@@ -42,13 +43,58 @@ canvas {
 .light-gray {
   background-color: #f0f0f0;
 }
+
+  #overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.6); /* 半透明の黒 */
+      display: none; /* 初期は非表示 */
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    /* モーダル本体 */
+    #modal {
+      background-color: white;
+      padding: 20px;
+      border-radius: 8px;
+      width: 400px;
+      max-width: 90%;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+      animation: fadeIn 0.2s ease-in-out;
+    }
+
+    /* フェードインアニメーション */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to   { opacity: 1; transform: scale(1); }
+    }
+
+    /* 閉じるボタン */
+    .close-btn {
+      float: right;
+      border: none;
+      background: none;
+      font-size: 1.2em;
+      cursor: pointer;
+    }
 </style>
 
 <body>
 <header class="h40 border f fbw fm px20">
-  <div>TOPへ</div>
+  <button class="button bg-orange text-white">ホームへ戻る</button>
+  <div class="f fm">
+    <div class="bold fs20 mr4">南畑発電所</div>
+  </div>
+
+
   <div>
-    <button class="button" id="sidebar-icon">サイドバーの開閉</button>
+    <button class="button bg-blue text-white mr12" id="powerPlantButton">発電所選択</button>
+    <button class="button bg-blue text-white">パターン登録</button>
   </div>
 </header>
 
@@ -59,8 +105,13 @@ canvas {
   </div>
   
   <div class="w315 f flex-column h-full flex-fixed px8 pt4 relative border" id="sidebar">
-    <div class="mb12">
-      <div class="mt4 bold">期間</div>
+    <div class="mb8">
+      <div class="f mb4">
+
+        <button class="button mr4 bg-orange text-white" id="sidebar-icon">➡</button>
+        <div class="mt4 bold">期間</div>
+      </div>
+
       <div class="f fm">
         <div class="f fm mr6">
           <select name="" id="" class="border border-black p6 rounded-4 mr4">
@@ -93,17 +144,19 @@ canvas {
         </div>
       </div>
     </div>
-    <div>
+    <div class="mb8">
       <div class="bold">パターン選択</div>
-      <select name="" id="" class="w256 border border-black p6 rounded-4 mb6">
-        <option value="2025">パターンA</option>
-        <option value="2024">パターンB</option>
-      </select>
-      <button class="button bg-blue text-white">パターン登録</button>
+      <div class="f fbw fm">
+        <select name="" id="" class="w-full border border-black p6 rounded-4 mr4">
+          <option value="2025">パターンA</option>
+          <option value="2024">パターンB</option>
+        </select>
+        <button class="button w60 flex-fixed bg-blue text-white">適応</button>
+      </div>
     </div>
 
-    <ul class="overflow-y-scroll bg-white p4 rounded-4">
-      <li class="mb12 light-gray p4 rounded-4">
+    <ul class="overflow-y-scroll bg-white rounded-4">
+      <li class="mb8 light-gray p6 rounded-4">
         <div class="bold">項目1</div>
         <select name="" id="" class="w256 border border-black p6 rounded-4 mb6">
           <option value="2025">ガイドベーン開度</option>
@@ -124,7 +177,7 @@ canvas {
         </div>
         
       </li>
-      <li class="mb12 light-gray p4 rounded-4">
+      <li class="mb8 light-gray p6 rounded-4">
         <div class="bold">項目2</div>
         <select name="" id="" class="w256 border border-black p6 rounded-4 mb6">
           <option value="2025">ガイドベーン開度</option>
@@ -145,7 +198,7 @@ canvas {
         </div>
         
       </li>
-      <li class="mb12 light-gray p4 rounded-4">
+      <li class="mb8 light-gray p6 rounded-4">
         <div class="bold">項目3</div>
         <select name="" id="" class="w256 border border-black p6 rounded-4 mb6">
           <option value="2025">ガイドベーン開度</option>
@@ -166,7 +219,7 @@ canvas {
         </div>
         
       </li>
-      <li class="mb12 light-gray p4 rounded-4">
+      <li class="mb8 light-gray p6 rounded-4">
         <div class="bold">項目4</div>
         <select name="" id="" class="w256 border border-black p6 rounded-4 mb6">
           <option value="2025">ガイドベーン開度</option>
@@ -187,7 +240,7 @@ canvas {
         </div>
         
       </li>
-      <li class="mb12 light-gray p4 rounded-4">
+      <li class="mb8 light-gray p6 rounded-4">
         <div class="bold">項目5</div>
         <select name="" id="" class="w256 border border-black p6 rounded-4 mb6">
           <option value="2025">ガイドベーン開度</option>
@@ -208,7 +261,7 @@ canvas {
         </div>
         
       </li>
-      <li class="mb12 light-gray p4 rounded-4">
+      <li class="mb8 light-gray p6 rounded-4">
         <div class="bold">項目6</div>
         <select name="" id="" class="w256 border border-black p6 rounded-4 mb6">
           <option value="2025">ガイドベーン開度</option>
@@ -229,7 +282,7 @@ canvas {
         </div>
         
       </li>
-      <li class="mb12 light-gray p4 rounded-4">
+      <li class="mb8 light-gray p6 rounded-4">
         <div class="bold">項目7</div>
         <select name="" id="" class="w256 border border-black p6 rounded-4 mb6">
           <option value="2025">ガイドベーン開度</option>
@@ -250,7 +303,7 @@ canvas {
         </div>
         
       </li>
-      <li class="mb12 light-gray p4 rounded-4">
+      <li class="mb8 light-gray p6 rounded-4">
         <div class="bold">項目8</div>
         <select name="" id="" class="w256 border border-black p6 rounded-4 mb6">
           <option value="2025">ガイドベーン開度</option>
@@ -271,7 +324,7 @@ canvas {
         </div>
         
       </li>
-      <li class="mb12 light-gray p4 rounded-4">
+      <li class="mb8 light-gray p6 rounded-4">
         <div class="bold">項目9</div>
         <select name="" id="" class="w256 border border-black p6 rounded-4 mb6">
           <option value="2025">ガイドベーン開度</option>
@@ -292,7 +345,7 @@ canvas {
         </div>
         
       </li>
-      <li class="mb12 light-gray p4 rounded-4">
+      <li class="mb8 light-gray p6 rounded-4">
         <div class="bold">項目10</div>
         <select name="" id="" class="w256 border border-black p6 rounded-4 mb6">
           <option value="2025">ガイドベーン開度</option>
@@ -322,12 +375,57 @@ canvas {
   </div>
 
 
-  <div class="absolute b40 r0 l20 f fl">
-    <div>日付の入力変更ゾーン</div>
+  <div class="absolute b40 r0 l0 f fc">
+    <div class="f fm">
+      <div class="f fm">
+        <input type="number" class="input w80">
+        <div class="px6">年</div>
+      </div>
+      <div class="f fm">
+        <input type="number" class="input w60">
+        <div class="px6">月</div>
+      </div>
+      <div class="f fm">
+        <input type="number" class="input w60">
+        <div class="px6">日</div>
+      </div>
+      <div class="px12">〜</div>
+      <div class="f fm">
+        <input type="number" class="input w80">
+        <div class="px6">年</div>
+      </div>
+      <div class="f fm">
+        <input type="number" class="input w60">
+        <div class="px6">月</div>
+      </div>
+      <div class="f fm">
+        <input type="number" class="input w60">
+        <div class="px6">日</div>
+      </div>
+      <button class="button bg-green text-white">変更</button>
+      
+
+
+    </div>
   </div>
 
 
 </div>
+
+<div id="overlay">
+    <div id="modal">
+      <button class="close-btn" id="closeModalBtn">&times;</button>
+      <h2>発電所選択</h2>
+      <p>水力センター</p>
+      <p><strong>佐賀水力センター</strong></p>
+      <p>地区: 福岡地区</p>
+      <p><strong>発電所: 南畑発電所</strong></p>
+      <div style="text-align: right;">
+        <button onclick="apply()">適用</button>
+      </div>
+    </div>
+  </div>
+
 
   <script>
 

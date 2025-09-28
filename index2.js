@@ -3,6 +3,9 @@ window.onload = function() {
 const ctx = document.getElementById('tripleAxisChart').getContext('2d');
 let sidebarIcon = document.getElementById('sidebar-icon');
 
+
+let powerPlantButtonElement = document.getElementById('powerPlantButton');
+
   // ▼ X軸ラベル（1〜90日）
   const labels = Array.from({ length: 90 }, (_, i) => `${i + 1}日`);
 
@@ -49,12 +52,36 @@ let sidebarIcon = document.getElementById('sidebar-icon');
       }
     }
   });
-      sidebarIcon.addEventListener('click', () => {
-        sidebar.classList.toggle("mnr250");
+  sidebarIcon.addEventListener('click', () => {
+    sidebar.classList.toggle("mnr250");
 
-        // アニメーションの後にresize
-        setTimeout(() => {
-          chart.resize();
-        }, 350);
-      });
+    // アニメーションの後にresize
+    setTimeout(() => {
+      chart.resize();
+    }, 350);
+  });
+
+    const overlay = document.getElementById('overlay');
+    const openBtn = document.getElementById('powerPlantButton');
+    const closeBtn = document.getElementById('closeModalBtn');
+
+    openBtn.addEventListener('click', () => {
+      overlay.style.display = 'flex'; // flexで中央寄せ
+    });
+
+    closeBtn.addEventListener('click', () => {
+      overlay.style.display = 'none';
+    });
+
+    // オーバーレイの黒い部分をクリックしたら閉じる
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) overlay.style.display = 'none';
+    });
+
+    function apply() {
+      alert("適用しました！");
+      overlay.style.display = 'none';
+    }
+
+
 };
