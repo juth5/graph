@@ -15,7 +15,7 @@ let powerPlantButtonElement = document.getElementById('powerPlantButton');
                   '降雨量 (mm)','蒸発量 (mm)','風速 (m/s)','気圧 (hPa)','日射量 (MJ/m²)'];
 
   // ▼ 10本のデータセット
-  const datasets = Array.from({ length: 3 }, (_, i) => ({
+  const datasets = Array.from({ length: 10 }, (_, i) => ({
     label: names[i],
     data: Array.from({ length: 90 }, () => (Math.random() * (i+1) * 100) + (i * 20)),
     borderColor: colors[i],
