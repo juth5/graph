@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- 1. Luxon本体を先に読み込む -->
+  <script src="https://cdn.jsdelivr.net/npm/luxon@3.4.4/build/global/luxon.min.js"></script>
+  <!-- 2. Chart.js本体 -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+  <!-- 3. 最後にアダプターを読み込む -->
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-luxon@1.3.1/dist/chartjs-adapter-luxon.umd.min.js"></script>
+</head>
+<body>
+  <h2>Chart.js × Luxon Adapter</h2>
+  <canvas id="dayChart" width="900" height="400"></canvas>
+
+  <script>
+    const start = new Date("2025-10-01T00:00:00");
+    const data = [];
+    for (let i = 0; i < 48; i++) {
+      if (i === 10) continue; // 欠測テスト
+      const t = new Date(start.getTime() + i * 30 * 60 * 1000);
+      data.push({ x: t, y: Math.floor(50 + 20 * Math.sin(i / 5)) });
+    }
+
+    const ctx = document.getElementById("dayChart").getContext("2d");
+    new Chart(ctx, {
+      type: "line",
+      data: {
+        datasets: [{
+          label: "出力値 (30分ごと)",
+          data: data,
+          borderColor: "blue",
+          pointRadius: 2
+        }]
+      },
+      options: {
+        parsing: false,
+        scales: {
+          x: {
+            type: "time",
+            time: {
+              unit: "hour",
+              displayFormats: { hour: "HH:mm" }
+            },
+            title: { display: true, text: "時刻" }
+          },
+          y: {
+            title: { display: true, text: "出力値" }
+          }
+        }
+      }
+    });
+  </script>
+</body>
+</html>

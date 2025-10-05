@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+</head>
+<body>
+  <h2>30日分の散布図 + 基準線</h2>
+  <canvas id="scatterChart" width="900" height="500"></canvas>
+
+  <script>
+    // ダミーデータ生成（30日 × 48点 = 1440点）
+    const data = [];
+    for (let d = 0; d < 30; d++) {
+      for (let i = 0; i < 48; i++) {
+        const open = 10 + i + Math.random() * 5;      // ガイドベーン開度（X軸）
+        const power = open * (0.8 + 0.02 * d) + (Math.random() * 10 - 5); // 出力（Y軸）
+        data.push({ x: open, y: power });
+      }
+    }
+
+    // 基準線データ（理想線: 出力 = 1.2 × 開度）
+    const baseline = [];
+    for (let x = 0; x <= 70; x += 5) {
+      baseline.push({ x: x, y: 1.2 * x });
+    }
+
+    new Chart(document.getElementById("scatterChart"), {
+      type: "scatter",
+      data: {
+        datasets: [
+          {
+            label: "30日分の運転データ",
+            data: data,
+            pointRadius: 2,
+            backgroundColor: "rgba(54, 162, 235, 0.6)"
+          },
+          {
+            label: "基準線 (出力 = 1.2 × 開度)",
+            data: baseline,
+            type: "line",
+            borderColor: "red",
+            borderWidth: 2,
+            fill: false,
+            pointRadius: 0,  // 線だけ表示
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          x: {
+            type: "linear",
+            title: { display: true, text: "ガイドベーン開度 (%)" },
+            min: 0,
+            max: 70
+          },
+          y: {
+            type: "linear",
+            title: { display: true, text: "出力 (kW)" }
+          }
+        }
+      }
+    });
+  </script>
+</body>
+</html>
